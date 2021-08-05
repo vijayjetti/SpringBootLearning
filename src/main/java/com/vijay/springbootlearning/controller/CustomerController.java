@@ -1,12 +1,15 @@
 package com.vijay.springbootlearning.controller;
 
 import com.vijay.springbootlearning.model.Customer;
+import com.vijay.springbootlearning.model.DeleteByCustomerIds;
 import com.vijay.springbootlearning.service.CustomerService;
 import com.vijay.springbootlearning.service.CustomerServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 import static com.vijay.springbootlearning.constants.URLConstants.*;
 
@@ -50,5 +53,13 @@ public class CustomerController {
     @DeleteMapping(value = DELETE)
     public void deleteCustomer(@PathVariable Integer customerId) {
         customerService.deleteCustomer(customerId);
+    }
+
+    @DeleteMapping(value = DELETE_BY_IDS)
+    public void deleteCustomers(@RequestBody DeleteByCustomerIds deleteByCustomerIds) {
+        Set<String> tobeDeletedCustomerIds = deleteByCustomerIds.getCustomerIds();
+        if(CollectionUtils.isNotEmpty(tobeDeletedCustomerIds)){
+            customerService.deleteBulkCustomers(tobeDeletedCustomerIds);
+        }
     }
 }

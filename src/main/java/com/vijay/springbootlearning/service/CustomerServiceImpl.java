@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static com.vijay.springbootlearning.constants.ApplicationConstants.DATA_BASE_TIMER_KEY;
 
@@ -44,6 +45,12 @@ public class CustomerServiceImpl implements CustomerService {
     @PerformanceTracker(timerKey = DATA_BASE_TIMER_KEY)
     public void deleteCustomer(Integer customerId) {
         customerRepository.deleteById(customerId.toString());
+    }
+
+    @Override
+    @PerformanceTracker(timerKey = DATA_BASE_TIMER_KEY)
+    public void deleteBulkCustomers(Set<String> customerIds) {
+        customerRepository.deleteAllById(customerIds);
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.vijay.springbootlearning.service;
 import com.vijay.springbootlearning.model.Customer;
 
 import java.util.List;
+import java.util.Set;
+
 
 public interface CustomerService {
 
@@ -13,6 +15,8 @@ public interface CustomerService {
     void updateCustomer(Customer customer);
 
     void deleteCustomer(Integer customerId);
+
+    void deleteBulkCustomers(Set<String> customerIds);
 
     List<Customer> getCustomerList();
 

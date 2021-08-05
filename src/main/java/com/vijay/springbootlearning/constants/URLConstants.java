@@ -15,6 +15,7 @@ public class URLConstants {
     public static final String ADD_LIST =  "/addCustomers";
     public static final String UPDATE = "/update";
     public static final String DELETE = "/delete/{Id}";
+    public static final String DELETE_BY_IDS = "/deleteByIds";
 
 
     public static final String GET_USER = "/user/{userId}";
